@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.output/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# Wrangler
+.wrangler/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Generated files (keep for reference but don't deploy)
+stitch-generated.html

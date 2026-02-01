@@ -28,3 +28,7 @@ Thumbs.db
 
 # Generated files (keep for reference but don't deploy)
 stitch-generated.html
+index.original.html
+
+# Lock files (optional)
+pnpm-lock.yaml

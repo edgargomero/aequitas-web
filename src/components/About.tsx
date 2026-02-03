@@ -1,6 +1,57 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+
+const leftColumnVariants = {
+  hidden: { opacity: 0, x: -60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut' as const,
+    },
+  },
+}
+
+const rightColumnVariants = {
+  hidden: { opacity: 0, x: 60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'easeOut' as const,
+    },
+  },
+}
+
+const featureVariants = {
+  hidden: { opacity: 0, scale: 0.8, x: -20 },
+  visible: (index: number) => ({
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      delay: 0.5 + index * 0.1,
+      ease: 'easeOut' as const,
+    },
+  }),
+}
+
+const valueVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: 0.4 + index * 0.15,
+      ease: 'easeOut' as const,
+    },
+  }),
+}
 
 const values = [
   {
@@ -33,9 +84,9 @@ export default function About() {
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            variants={leftColumnVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
           >
             <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 gradient-text">
               Sobre AEQUITAS Capital
@@ -54,12 +105,14 @@ export default function About() {
               {features.map((feature, index) => (
                 <motion.div
                   key={feature}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                  className="flex items-center space-x-2"
+                  custom={index}
+                  variants={featureVariants}
+                  initial="hidden"
+                  animate={isInView ? 'visible' : 'hidden'}
+                  whileHover={{ scale: 1.05, x: 5 }}
+                  className="flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-full"
                 >
-                  <svg className="w-6 h-6 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-700 font-medium">{feature}</span>
@@ -70,26 +123,36 @@ export default function About() {
 
           {/* Right Column - Values Card */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={rightColumnVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
           >
-            <div className="bg-gradient-to-br from-blue-900 to-blue-700 rounded-3xl p-12 text-white shadow-2xl">
+            <motion.div
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gradient-to-br from-blue-900 to-blue-700 rounded-3xl p-12 text-white shadow-2xl"
+            >
               <h3 className="text-3xl font-bold font-serif mb-8">Nuestros Valores</h3>
               <div className="space-y-6">
                 {values.map((value, index) => (
                   <motion.div
                     key={value.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.15 }}
-                    className="flex items-start space-x-4"
+                    custom={index}
+                    variants={valueVariants}
+                    initial="hidden"
+                    animate={isInView ? 'visible' : 'hidden'}
+                    whileHover={{ x: 10 }}
+                    className="flex items-start space-x-4 group cursor-default"
                   >
-                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <motion.div
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                      className="w-12 h-12 bg-white/20 group-hover:bg-white/30 rounded-full flex items-center justify-center flex-shrink-0 transition-colors"
+                    >
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                    </div>
+                    </motion.div>
                     <div>
                       <h4 className="font-semibold text-xl mb-2">{value.title}</h4>
                       <p className="text-white/90">{value.description}</p>
@@ -97,7 +160,7 @@ export default function About() {
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -1,0 +1,17 @@
+{
+  "name": "AEQUITAS Capital - Inversión y Administración de Patrimonio",
+  "short_name": "AEQUITAS Capital",
+  "description": "Gestión profesional de patrimonio, inversión de capital y asesoría financiera.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

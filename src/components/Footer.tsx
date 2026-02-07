@@ -43,9 +43,9 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Legal</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
-              <li>RUT: Pendiente</li>
-              <li>Domicilio: Ñuñoa, Santiago</li>
+              <li>Inversiones AEQUITAS Capital SPA</li>
               <li>Sociedad por Acciones</li>
+              <li>Domicilio: Ñuñoa, Santiago</li>
             </ul>
           </div>
         </div>

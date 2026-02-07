@@ -1,23 +1,31 @@
+import { lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Stats from './components/Stats'
-import Services from './components/Services'
-import About from './components/About'
-import CTA from './components/CTA'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+
+const Stats = lazy(() => import('./components/Stats'))
+const Services = lazy(() => import('./components/Services'))
+const About = lazy(() => import('./components/About'))
+const CTA = lazy(() => import('./components/CTA'))
+const Contact = lazy(() => import('./components/Contact'))
+const Footer = lazy(() => import('./components/Footer'))
 
 function App() {
   return (
     <div className="bg-white text-gray-900">
       <Navbar />
-      <Hero />
-      <Stats />
-      <Services />
-      <About />
-      <CTA />
-      <Contact />
-      <Footer />
+      <main>
+        <Hero />
+        <Suspense>
+          <Stats />
+          <Services />
+          <About />
+          <CTA />
+          <Contact />
+        </Suspense>
+      </main>
+      <Suspense>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

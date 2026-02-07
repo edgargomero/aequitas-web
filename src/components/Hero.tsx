@@ -44,7 +44,7 @@ export default function Hero() {
     if (!particlesRef.current) return
 
     const container = particlesRef.current
-    const particleCount = 60
+    const particleCount = 20
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div')

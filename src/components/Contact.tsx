@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
 
 const contactInfo = [
   {
@@ -44,11 +43,22 @@ export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    // TODO: Integrar con servicio real (Formspree, Resend, EmailJS)
+    console.log('Form data:', Object.fromEntries(formData))
     setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 3000)
+    e.currentTarget.reset()
+    timerRef.current = setTimeout(() => setFormSubmitted(false), 4000)
   }
 
   return (
@@ -125,8 +135,9 @@ export default function Contact() {
                 <input
                   type="text"
                   id="nombre"
+                  name="nombre"
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                   placeholder="Juan Pérez"
                 />
               </div>
@@ -138,8 +149,9 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                   placeholder="juan@ejemplo.com"
                 />
               </div>
@@ -151,7 +163,8 @@ export default function Contact() {
                 <input
                   type="tel"
                   id="telefono"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  name="telefono"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                   placeholder="+56 9 1234 5678"
                 />
               </div>
@@ -162,7 +175,8 @@ export default function Contact() {
                 </label>
                 <select
                   id="servicio"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  name="servicio"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                 >
                   {serviceOptions.map((option) => (
                     <option key={option}>{option}</option>
@@ -176,8 +190,9 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="mensaje"
+                  name="mensaje"
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                   placeholder="Cuéntenos sobre su consulta..."
                 />
               </div>

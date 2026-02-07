@@ -5,15 +5,78 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AEQUITAS Capital - Inversión y Administración de Patrimonio</title>
-    <meta name="description" content="Inversión y administración profesional de recursos y bienes. Asesoramiento especializado en gestión patrimonial." />
+    <meta name="description" content="Inversiones AEQUITAS Capital SPA — Gestión profesional de patrimonio, inversión de capital, bienes raíces y asesoría financiera en Santiago, Chile." />
+
+    <!-- SEO -->
+    <link rel="canonical" href="https://aequitascapital.cl/" />
+    <meta name="theme-color" content="#1e3a8a" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aequitascapital.cl/" />
+    <meta property="og:title" content="AEQUITAS Capital - Inversión y Administración de Patrimonio" />
+    <meta property="og:description" content="Gestión profesional de patrimonio, inversión de capital, bienes raíces y asesoría financiera en Santiago, Chile." />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="AEQUITAS Capital" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AEQUITAS Capital - Inversión y Administración de Patrimonio" />
+    <meta name="twitter:description" content="Gestión profesional de patrimonio, inversión de capital, bienes raíces y asesoría financiera en Santiago, Chile." />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Inversiones AEQUITAS Capital SPA",
+      "description": "Sociedad por acciones especializada en inversión y administración profesional de recursos y bienes.",
+      "url": "https://aequitascapital.cl",
+      "email": "contacto@aequitascapital.cl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Alcalde Jorge Monckeberg #1721",
+        "addressLocality": "Ñuñoa",
+        "addressRegion": "Santiago",
+        "addressCountry": "CL"
+      },
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "areaServed": { "@type": "Country", "name": "Chile" },
+      "serviceType": ["Inversión de Capital", "Gestión Inmobiliaria", "Asesoría Patrimonial", "Administración de Recursos", "Participación Societaria", "Consultoría Financiera"]
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Static hero placeholder for instant LCP -->
+    <style>
+      #hero-placeholder {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        padding: 6rem 1.5rem;
+      }
+      #hero-placeholder h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(3rem, 8vw, 4.5rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.1;
+      }
+      #root:not(:empty) + #hero-placeholder { display: none; }
+    </style>
   </head>
   <body class="bg-white text-gray-900">
     <div id="root"></div>
+    <div id="hero-placeholder">
+      <h1>AEQUITAS Capital</h1>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

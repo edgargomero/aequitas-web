@@ -1,12 +1,12 @@
+const quickLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contacto', label: 'Contacto' },
+]
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-
-  const quickLinks = [
-    { href: '#inicio', label: 'Inicio' },
-    { href: '#servicios', label: 'Servicios' },
-    { href: '#nosotros', label: 'Nosotros' },
-    { href: '#contacto', label: 'Contacto' },
-  ]
 
   return (
     <footer className="bg-gray-900 text-white py-12">
